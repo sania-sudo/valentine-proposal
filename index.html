@@ -35,31 +35,36 @@
     100% { transform: translateY(-120vh); opacity: 0; }
   }
 
-  /* Centered bouncing envelope */
-  #envelope {
+  /* Envelope container */
+  #envelopeContainer {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 10;
+  }
+
+  /* Bouncing envelope */
+  #envelope {
     cursor: pointer;
     width: 200px;
     animation: bounce 2s ease-in-out infinite;
   }
 
   #envelope:hover {
-    transform: translate(-50%, -50%) scale(1.1);
+    transform: scale(1.1);
   }
 
   @keyframes bounce {
-    0% { transform: translate(-50%, -50%) translateY(0px); }
-    50% { transform: translate(-50%, -50%) translateY(-20px); }
-    100% { transform: translate(-50%, -50%) translateY(0px); }
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
   }
 
   /* Hidden elements initially */
   #question, #teddy, #buttons, #afterYes {
     opacity: 0;
-    transition: opacity 1s ease, transform 1s ease;
+    transition: opacity 1s ease;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -124,9 +129,11 @@ setInterval(() => {
 </script>
 
 <!-- Envelope in center -->
-<img id="envelope" src="https://cdn-icons-png.flaticon.com/512/561/561127.png"
-     alt="Click to Open" title="Click me ❤️"
-     onclick="openEnvelope()">
+<div id="envelopeContainer">
+  <img id="envelope" src="https://cdn-icons-png.flaticon.com/512/561/561127.png"
+       alt="Click to Open" title="Click me ❤️"
+       onclick="openEnvelope()">
+</div>
 
 <!-- Valentine question -->
 <div id="question">
@@ -155,7 +162,7 @@ setInterval(() => {
 <script>
   // Envelope click
   function openEnvelope() {
-    document.getElementById('envelope').style.display = 'none';
+    document.getElementById('envelopeContainer').style.display = 'none';
     document.getElementById('question').classList.add('show');
     document.getElementById('teddy').classList.add('show');
     setTimeout(() => document.getElementById('buttons').classList.add('show'), 1200);
