@@ -1,125 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>For Jidnya ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Jidnya ❤️</title>
 
-  <!-- Romantic font -->
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
+<!-- Handwritten romantic font -->
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #fff0f5;
-      font-family: 'Dancing Script', cursive;
-      text-align: center;
-      overflow-x: hidden;
-    }
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #fff0f5; /* light pink */
+    font-family: 'Dancing Script', cursive;
+    text-align: center;
+    overflow-x: hidden;
+    height: 100vh;
+    position: relative;
+  }
 
-    /* Floating background hearts */
-    .bg-heart {
-      position: fixed;
-      bottom: -10px;
-      font-size: 18px;
-      animation: floatUp 7s linear infinite;
-      color: #ff99bb;
-      opacity: 0.8;
-    }
+  /* Floating background hearts */
+  .bg-heart {
+    position: fixed;
+    bottom: -10px;
+    font-size: 18px;
+    animation: floatUp 7s linear infinite;
+    color: #ff99bb;
+    opacity: 0.8;
+  }
 
-    @keyframes floatUp {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-120vh); opacity: 0; }
-    }
+  @keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-120vh); opacity: 0; }
+  }
 
-    /* Envelope initial */
-    #envelope {
-      margin-top: 150px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    #envelope:hover {
-      transform: scale(1.1);
-    }
+  /* Centered bouncing envelope */
+  #envelope {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    width: 200px;
+    animation: bounce 2s ease-in-out infinite;
+  }
 
-    /* Hidden until clicked */
-    #question, #teddy, #buttons, #afterYes {
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
+  #envelope:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
 
-    #question.show, #teddy.show, #buttons.show, #afterYes.show {
-      opacity: 1;
-    }
+  @keyframes bounce {
+    0% { transform: translate(-50%, -50%) translateY(0px); }
+    50% { transform: translate(-50%, -50%) translateY(-20px); }
+    100% { transform: translate(-50%, -50%) translateY(0px); }
+  }
 
-    button {
-      padding: 15px 25px;
-      font-size: 20px;
-      margin: 15px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      font-family: 'Dancing Script', cursive;
-    }
-    .yesBtn {
-      background-color: #ff4d6d;
-      color: white;
-    }
-    .noBtn {
-      background-color: #aaa;
-      color: white;
-      position: relative;
-    }
+  /* Hidden elements initially */
+  #question, #teddy, #buttons, #afterYes {
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-    /* Confetti hearts */
-    .confetti {
-      position: fixed;
-      font-size: 22px;
-      animation: confettiUp 1.5s ease-out forwards;
-      opacity: 0.9;
-    }
-    @keyframes confettiUp {
-      0% { transform: translateY(0) rotate(0); opacity: 1; }
-      100% { transform: translateY(-200px) rotate(360deg); opacity: 0; }
-    }
-  </style>
+  #question.show, #teddy.show, #buttons.show, #afterYes.show {
+    opacity: 1;
+  }
+
+  /* Buttons */
+  button {
+    padding: 15px 25px;
+    font-size: 20px;
+    margin: 15px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: 'Dancing Script', cursive;
+  }
+
+  .yesBtn {
+    background-color: #ff4d6d;
+    color: white;
+  }
+
+  .noBtn {
+    background-color: #aaa;
+    color: white;
+    position: relative;
+  }
+
+  /* Confetti hearts */
+  .confetti {
+    position: fixed;
+    font-size: 22px;
+    animation: confettiUp 1.5s ease-out forwards;
+    opacity: 0.9;
+  }
+
+  @keyframes confettiUp {
+    0% { transform: translateY(0) rotate(0); opacity: 1; }
+    100% { transform: translateY(-200px) rotate(360deg); opacity: 0; }
+  }
+
+</style>
 </head>
 
 <body>
 
 <!-- Floating background hearts -->
 <script>
-  setInterval(() => {
-    const h = document.createElement("div");
-    h.className = "bg-heart";
-    h.innerHTML = "💗";
-    h.style.left = Math.random() * 100 + "vw";
-    h.style.animationDuration = (6 + Math.random() * 4) + "s";
-    document.body.appendChild(h);
-    setTimeout(() => h.remove(), 9000);
-  }, 500);
+setInterval(() => {
+  const h = document.createElement("div");
+  h.className = "bg-heart";
+  h.innerHTML = "💗";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.animationDuration = (6 + Math.random() * 4) + "s";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 9000);
+}, 500);
 </script>
 
-<!-- Envelope -->
-<img id="envelope" src="https://cdn-icons-png.flaticon.com/512/482/482858.png"
-     width="200" alt="Click to Open" title="Click me ❤️"
+<!-- Envelope in center -->
+<img id="envelope" src="https://cdn-icons-png.flaticon.com/512/561/561127.png"
+     alt="Click to Open" title="Click me ❤️"
      onclick="openEnvelope()">
 
+<!-- Valentine question -->
 <div id="question">
   <h1 style="font-size: 42px; color: #c81d64;">Will you be my Valentine?</h1>
 </div>
 
+<!-- Teddy bears GIF -->
 <div id="teddy">
   <img src="https://media1.tenor.com/m/0MxdM593P9gAAAAd/hugs-love.gif"
        width="300" alt="Teddy Love">
 </div>
 
+<!-- YES / NO buttons -->
 <div id="buttons">
   <button class="yesBtn" onclick="sayYes()">YES 💕</button>
   <button class="noBtn" onmouseover="moveNo(this)">NO 😏</button>
 </div>
 
+<!-- After YES: Cat kiss + final message -->
 <div id="afterYes">
   <img src="https://tenor.com/view/besito-catlove-gif-11397231996208728070" width="300" alt="Cat Kiss">
   <h1 style="font-size: 36px; color: #a60f6b;">You're all I ever wanted ❤️</h1>
@@ -127,6 +153,7 @@
 </div>
 
 <script>
+  // Envelope click
   function openEnvelope() {
     document.getElementById('envelope').style.display = 'none';
     document.getElementById('question').classList.add('show');
@@ -134,11 +161,13 @@
     setTimeout(() => document.getElementById('buttons').classList.add('show'), 1200);
   }
 
+  // NO button runs away
   function moveNo(btn) {
     btn.style.top = Math.random() * 60 + "vh";
     btn.style.left = Math.random() * 60 + "vw";
   }
 
+  // YES button clicked
   function sayYes() {
     document.getElementById('question').style.display = 'none';
     document.getElementById('teddy').style.display = 'none';
@@ -161,5 +190,3 @@
 
 </body>
 </html>
-
-   
